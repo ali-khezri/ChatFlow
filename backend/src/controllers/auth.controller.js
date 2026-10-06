@@ -53,10 +53,45 @@ export async function signup(req, res) {
   }
 }
 
-export function login(req, res) {
-  res.send("Login route");
+export async function login(req, res) {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    generateToken(user._id, res);
+
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    console.log("Error is login controller", error.message);
+    res.status(501).json({ message: "Internal Server Error" });
+  }
 }
 
 export function logout(req, res) {
-  res.send("Logout route");
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+
+    res.status(200).json({ message: "Logged out successfully!" });
+  } catch (error) {
+    console.log("Error is logout controller", error.message);
+    res.status(501).json({ message: "Internal Server Error" });
+  }
 }
+
+export async function updateProfile(req, res) {}
