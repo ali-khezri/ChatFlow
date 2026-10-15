@@ -29,8 +29,11 @@ function SignupPage() {
 
     if (!formData.email.trim()) return toast.error("Email is required");
 
-    if (!/\S+@\S+\.\S+/.test(formData.email))
-      return toast.error("Invalid email format");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(formData.email)) {
+      return toast.error("Please enter a valid email");
+    }
 
     if (!formData.password) return toast.error("Password is required");
 
@@ -51,7 +54,7 @@ function SignupPage() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Left side of form */}
-      <div className="flex flex-col justify-center items-center p-6 sm:p-12">
+      <div className="flex flex-col justify-center items-center p-20">
         <div className="w-full max-w-md space-y-8">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -125,7 +128,7 @@ function SignupPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder=".........."
+                  placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
