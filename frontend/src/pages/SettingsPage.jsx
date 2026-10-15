@@ -59,7 +59,7 @@ function SettingsPage() {
                 <div className="px-4 py-3 border-b border-base-300 bg-base-100">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-medium">
-                      J
+                      A
                     </div>
                     <div>
                       <h3 className="font-medium text-sm">Ali Khezri</h3>
@@ -82,6 +82,7 @@ function SettingsPage() {
                         `}
                       >
                         <p className="text-sm">{message.content}</p>
+
                         <p
                           className={`
                             text-[10px] mt-1.5
