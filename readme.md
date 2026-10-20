@@ -8,6 +8,21 @@ The application supports user authentication, one-to-one conversations, real-tim
 
 [View ChatFlow](https://chatflow-28cd.onrender.com/)
 
+## Demo Credentials
+
+You can use the following demo accounts to explore the application:
+
+User 1
+Email: ali@email.com
+Password: 123456
+
+User 2
+Email: amir@email.com
+Password: 123456
+
+
+You can log in with both accounts in separate browsers or sessions to test real-time messaging between users.
+
 ## Features
 
 - User signup, login, and logout
